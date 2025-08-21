@@ -4,6 +4,9 @@ From Products as p , Categories as c
 Where P .CategoryID = C.CagetgoryID
 and CategoryName = 'seafood'
 
+Select CategoryName , ProductName , UnitPrice 
+From Products Join Categorics
+On P.CategoryID = C.CagetgoryID
 
 Select CompanyName = OrderId
 From Orders , Shippers
