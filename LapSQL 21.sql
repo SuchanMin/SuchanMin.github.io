@@ -50,3 +50,18 @@ from Employees e join orders o on e.EmployeeID  = o.EmployeeID
                  join Products p on p.ProductID = od.ProductID
 where e.FirstName = 'Nancy'
 order by productID 
+
+------- ชื่อบริษัทลูกค้าชื่อ Around the Horn  ชื่อสินค้าที่มาจากประเทศอะไรบ้าง --------------
+select p.ProductID, P.productName  , sum(Quantity) จำนวนซื้อ 
+from customers  c join orders o on c.CustomerID =o.CustomerID 
+                  join [Order Details ] od on o.OrderID = od.OrderID
+                  join products p on p.ProductID = od.ProductID 
+where c.CompanyName = ' around the Horn'
+group by p.ProductID , p.ProductName 
+
+-----เลขใบสินค้า ชื่อพนักงาน และยอดขายในใบสั่งซื้อ -----------------------
+SELECT o.OrderID, FirstName,
+       round(sum (od.Quantity* od.UnitPrice * (1-Discount)),2) TotalCash
+FROM Orders o join Employees e on o.EmployeeID = e.EmployeeID
+              JOIN [Order Details] od on o.OrderID = od.OrderID
+GROUP BY o.OrderID, FirstName
